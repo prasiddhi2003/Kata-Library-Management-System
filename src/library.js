@@ -10,6 +10,15 @@ class Library {
     viewAvailableBooks() {
       return this.books.filter((book) => book.available);
     }
+
+    borrowBook(isbn) {
+        const book = this.books.find((b) => b.isbn === isbn && b.available);
+        if (!book) {
+          throw new Error('Book is not available');
+        }
+        book.available = false;
+      }
+      
   }
   
   module.exports = Library;
