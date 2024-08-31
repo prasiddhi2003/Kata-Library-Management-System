@@ -27,5 +27,13 @@ describe('Library Management System', () => {
     library.borrowBook('1234');
     expect(() => library.borrowBook('1234')).toThrow('Book is not available');
   });
+
+  test('should return a borrowed book', () => {
+    const book = { isbn: '1234', title: 'Clean Code', author: 'Robert C. Martin', year: 2008 };
+    library.addBook(book);
+    library.borrowBook('1234');
+    library.returnBook('1234');
+    expect(library.viewAvailableBooks()).toContainEqual(expect.objectContaining(book));
+  });
   
 });
